@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOTE EXISTS taskmanager_db;
