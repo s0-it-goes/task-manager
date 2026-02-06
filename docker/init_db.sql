@@ -1,1 +1,1 @@
-CREATE DATABASE IF NOTE EXISTS taskmanager_db;
+CREATE DATABASE IF NOT EXISTS taskmanager_db;
