@@ -20,7 +20,7 @@ class Container implements ContainerInterface {
             return $entry($this);
         }
 
-        
+        return $this->resolve($id);
     }
 
     public function has(string $id): bool
