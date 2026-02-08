@@ -6,8 +6,8 @@ class HomeController {
     public function __construct() {
     }
 
-    public function get(int $c)
+    public function home()
     {
-        return $c;
+        echo 'home';
     }
 }
