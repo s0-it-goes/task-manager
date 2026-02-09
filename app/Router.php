@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Controller\HomeController;
-
 class Router
 {
     private array $routes = [];
@@ -14,15 +12,28 @@ class Router
     {
     }
 
-    public function register(string $route, callable|array $action)
+    private function register(string $requestMethod, string $uri, callable|array $action): static
     {
-        $this->routes[$route] = $action;    
+        $this->routes[$requestMethod][$uri] = $action;
+
+        return $this;
     }
 
-    public function resolve(string $requestUri)
+    public function get(string $uri, callable|array $action): Router
     {
-        $route = explode('?', $requestUri)[0];
-        $action = $this->routes[$route] ?? null;
+        return $this->register('get', $uri, $action);
+    }
+
+    public function post(string $uri, callable|array $action): Router
+    {
+        return $this->register('post', $uri, $action);
+    }
+
+    public function resolve(string $method, string $requestUri)
+    {
+        $uri = explode('?', $requestUri)[0];
+
+        $action = $this->routes[$method][$uri] ?? null;
 
         if(!$action) {
             throw new \Exception('not valid route');

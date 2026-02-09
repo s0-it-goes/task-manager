@@ -16,13 +16,13 @@ $container->set(Router::class, fn(Container $c) => new Router($c));
 
 $router = $container->get(Router::class);
 
-$router->register(
+$router
+->get(
     '/',
     [HomeController::class, 'home']
-);
-
-$router->register('/job', function() {
+)->get(
+    '/job', function() {
     echo 'job';
 });
 
-$router->resolve($_SERVER['REQUEST_URI']);
+$router->resolve(strtolower($_SERVER['REQUEST_METHOD']), $_SERVER['REQUEST_URI']);
