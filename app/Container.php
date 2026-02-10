@@ -4,7 +4,6 @@ declare (strict_types= 1);
 namespace App;
 
 use App\Exceptions\Container\ContainerException;
-use App\Exceptions\NotFoundException;
 use Psr\Container\ContainerInterface;
 use ReflectionClass;
 

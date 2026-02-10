@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Controller;
+use App\View;
 
 class HomeController {
-    public function __construct() {
+    public function __construct(
+        private View $view
+    ) 
+    {
     }
 
-    public function home()
+    public function index()
     {
-        echo 'home';
+        return $this->view->render('home/index');
     }
 }
