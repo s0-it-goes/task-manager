@@ -22,10 +22,11 @@ class View
     {
         $pathView = VIEWS_PATH . '/' . $this->view . '.php';
         
-        
         ob_start();
 
         if(!file_exists($pathView)) {
+            ob_end_clean();
+
             throw new \Exception('view "' . $pathView . '" does not exist');
         }
 
