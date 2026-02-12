@@ -5,13 +5,13 @@ use App\View;
 
 class HomeController {
     public function __construct(
-        private View $view
     ) 
     {
     }
 
-    public function index()
+    public function index(): string
     {
-        return $this->view->render('home/index');
+        
+        return View::make('home/index');
     }
 }

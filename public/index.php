@@ -8,7 +8,7 @@ use App\Router;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-define("VIEWS_PATH", __DIR__ . "/../views/");
+define("VIEWS_PATH", __DIR__ . "/../views");
 
 $container = new Container();
 
@@ -24,5 +24,5 @@ $router
     '/job', function() {
     echo 'job';
 });
-echo readfile(VIEWS_PATH . "/home/index.php");
-$router->resolve(strtolower($_SERVER['REQUEST_METHOD']), $_SERVER['REQUEST_URI']);
+
+echo $router->resolve(strtolower($_SERVER['REQUEST_METHOD']), $_SERVER['REQUEST_URI']);
