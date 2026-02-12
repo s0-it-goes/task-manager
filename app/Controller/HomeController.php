@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
+
 use App\View;
 
 class HomeController {
@@ -9,7 +12,7 @@ class HomeController {
     {
     }
 
-    public function index(): string
+    public function index(): View
     {
         
         return View::make('home/index');

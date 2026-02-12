@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 class View
@@ -13,12 +15,13 @@ class View
 
     public static function make(string $view, array $params = [])
     {
-        return new View($view, $params);
+        return new static($view, $params);
     }
 
     private function render(): string
     {
         $pathView = VIEWS_PATH . '/' . $this->view . '.php';
+        
         
         ob_start();
 
@@ -26,12 +29,14 @@ class View
             throw new \Exception('view "' . $pathView . '" does not exist');
         }
 
+        extract($this->params);
+
         include VIEWS_PATH . '/' . $this->view . '.php';
 
         return (string) ob_get_clean();
     }
 
-    public function __tostring()
+    public function __toString(): string
     {
         return $this->render();
     }
