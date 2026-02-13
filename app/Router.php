@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\Exceptions\Router\RouteNotFoundException;
+use App\Exceptions\Router\RouterClassException;
+use App\Exceptions\Router\RouterException;
+use App\Exceptions\Router\RouterMethodException;
+
 class Router
 {
     private array $routes = [];
@@ -36,7 +41,7 @@ class Router
         $action = $this->routes[$method][$uri] ?? null;
 
         if(!$action) {
-            throw new \Exception('not valid route');
+            throw new RouteNotFoundException('route not found');
         }
 
         if(is_callable($action)) {
@@ -44,21 +49,21 @@ class Router
         }
 
         if(!is_array($action)) {
-            throw new \Exception('invalid action argument in resolve method');
+            throw new RouterException('invalid action argument in resolve method');
         }
 
         if(count($action) !== 2) {
-            throw new \Exception('invalid action argument array size in resolve method');
+            throw new RouterException('invalid action argument array size in resolve method');
         }
 
         [$class, $method] = $action;
 
         if(!class_exists($class)) {
-            throw new \Exception('controller "' . $class . '" does not exist'); 
+            throw new RouterClassException('route "' . $class . '" does not exist'); 
         }
 
         if(!method_exists($class, $method)) {
-            throw new \Exception('method "' . $method . '" does not exist in controller "' . $class . '"');
+            throw new RouterMethodException('method "' . $method . '" does not exist in route "' . $class . '"');
         }
         
         $class = $this->container->get($class);
