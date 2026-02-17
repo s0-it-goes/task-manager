@@ -71,4 +71,9 @@ class Router
         return call_user_func([$class, $method]);
         
     }
+
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
 }
