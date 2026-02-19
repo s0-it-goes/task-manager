@@ -21,14 +21,13 @@ class View
     private function render(): string
     {
         $pathView = VIEWS_PATH . '/' . $this->view . '.php';
-        
-        ob_start();
 
         if(!file_exists($pathView)) {
-            ob_end_clean();
 
             throw new \Exception('view "' . $pathView . '" does not exist');
         }
+
+        ob_start();
 
         extract($this->params);
 
@@ -39,6 +38,7 @@ class View
 
     public function __toString(): string
     {
+        
         return $this->render();
     }
 }
