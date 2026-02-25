@@ -14,14 +14,11 @@ class HomeController {
     public function __construct(
         private DB $database
     ) 
-    {
-        
+    {   
     }
 
     public function index(): View
     {
-        echo '<pre>';
-        var_dump($this->database);
         return View::make('home/index');
     }
 }
