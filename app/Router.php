@@ -12,7 +12,7 @@ class Router
     private array $routes = [];
 
     public function __construct(
-        private Container $container,
+        private Container $container
     )
     {
     }

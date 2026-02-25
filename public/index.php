@@ -15,6 +15,8 @@ define("VIEWS_PATH", __DIR__ . "/../views");
 
 $container = new Container();
 
+$container->set(Container::class, fn() => $container);
+
 $container->set(
     DBConfig::class, 
     fn() => new DBConfig($_ENV)
@@ -35,7 +37,7 @@ $container->set(Request::class,
 $routes = $container->get(Routes::class);
 $router = $routes->getRouter();
 $request = $container->get(Request::class);
-$DBconfig = $container->get(DBConfig::class);
+$config = $container->get(DBConfig::class);
 
 
 (new App(
@@ -43,5 +45,5 @@ $DBconfig = $container->get(DBConfig::class);
     $router, 
     $routes,
     $request,
-    $DBconfig
+    $config
 ))->run();

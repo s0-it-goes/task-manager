@@ -19,6 +19,9 @@ class App
     )
     {
         $this->routes->registerRoutes();
+
+        $database = new DB($this->config);
+        $container->set(DB::class, fn() => $database);
     }
 
     public function run()
