@@ -9,4 +9,9 @@ class AuthController
     )
     {
     }
+
+    public function index()
+    {
+        
+    }
 }

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use App\App;
 use App\Config\DBConfig;
 use App\Container;
