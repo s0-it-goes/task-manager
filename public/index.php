@@ -31,7 +31,7 @@ $container->set(Request::class,
             $_POST, 
             $_COOKIE, 
             $_SESSION ?? [], 
-            $_SERVER, 
+            $_SERVER,
             $_FILES
         );
 });
